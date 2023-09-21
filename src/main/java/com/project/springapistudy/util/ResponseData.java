@@ -6,6 +6,9 @@ public class ResponseData {
     public static <T> ApiResult <T> success(T data, String msg) {
         return new ApiResult<>(data, msg);
     }
+    public static <T> ApiResult <T> success(String msg) {
+        return new ApiResult<>(msg);
+    }
 
     public static ApiResult<?> fail(String message) {
         return new ApiResult<>(message);

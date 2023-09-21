@@ -37,4 +37,9 @@ public class MenuService {
         Menu currentMenu = findById(id);
         return menuRepository.save(currentMenu.updateBasicInfo(dto.menuName()));
     }
+
+    @Transactional
+    public void deleteMenu(Long id) {
+        menuRepository.delete(findById(id));
+    }
 }

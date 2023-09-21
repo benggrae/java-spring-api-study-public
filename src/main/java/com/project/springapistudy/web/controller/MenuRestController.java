@@ -31,4 +31,11 @@ public class MenuRestController {
     public ResponseData.ApiResult<?> updateMenuByIdApi(@PathVariable Long id, @RequestBody MenuDto dto) {
         return ResponseData.success(service.updateMenu(id, dto), "수정 성공");
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseData.ApiResult<?> deleteMenuByIdApi(@PathVariable Long id) {
+        service.deleteMenu(id);
+        return ResponseData.success("삭제 성공");
+    }
 }
