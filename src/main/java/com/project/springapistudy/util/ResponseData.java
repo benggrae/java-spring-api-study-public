@@ -1,9 +1,7 @@
 package com.project.springapistudy.util;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
-@JsonInclude
 public class ResponseData {
     public static <T> ApiResult <T> success(T data, String msg) {
         return new ApiResult<>(data, msg);
