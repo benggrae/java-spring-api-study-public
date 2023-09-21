@@ -1,6 +1,5 @@
 package com.project.springapistudy.web.controller;
 
-import com.project.springapistudy.domain.menu.Menu;
 import com.project.springapistudy.service.MenuService;
 import com.project.springapistudy.util.ResponseData;
 import com.project.springapistudy.web.dto.MenuDto;

@@ -15,4 +15,10 @@ public class ExceptionRestHandler {
         return ResponseData.fail(e.getMessage());
     }
 
+    @ExceptionHandler(DuplicationMenuException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseData.ApiResult<?> idNotFoundException(DuplicationMenuException e) {
+        return ResponseData.fail(e.getMessage());
+    }
+
 }

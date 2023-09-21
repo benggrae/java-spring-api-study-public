@@ -3,6 +3,7 @@ package com.project.springapistudy.service;
 import com.project.springapistudy.domain.menu.Menu;
 import com.project.springapistudy.domain.menu.MenuRepository;
 import com.project.springapistudy.web.dto.MenuDto;
+import com.project.springapistudy.web.exception.DuplicationMenuException;
 import com.project.springapistudy.web.exception.IdNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class MenuService {
 
     @Transactional
     public Menu saveMenu(MenuDto dto) {
+        menuRepository.findByMenuName(dto.menuName())
+                .ifPresent(menu -> {
+                    throw new DuplicationMenuException(menu.getMenuName() + " 메뉴는 이미 등록되어 있습니다.");
+                });
         return menuRepository.save(Menu.builder()
                 .menuName(dto.menuName())
                 .build());

@@ -2,6 +2,8 @@ package com.project.springapistudy.domain.menu;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MenuRepository extends JpaRepository<Menu, Long> {
+import java.util.Optional;
 
+public interface MenuRepository extends JpaRepository<Menu, Long> {
+    Optional<Menu> findByMenuName(String menuName);
 }
