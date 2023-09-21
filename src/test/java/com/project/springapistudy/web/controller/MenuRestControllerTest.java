@@ -55,7 +55,7 @@ class MenuRestControllerTest {
     @DisplayName("메뉴 저장 컨트롤러 로직 확인 테스트")
     void postMenuTest() throws Exception {
         // given
-        MenuDto dto = new MenuDto("아이스 아메리카노");
+        MenuDto dto = new MenuDto(1L, "아이스 아메리카노");
         String content = gson.toJson(dto);
         Menu menu = Menu.builder()
                 .id(1L)
