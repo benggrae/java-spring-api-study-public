@@ -7,6 +7,10 @@ public class ResponseData {
         return new ApiResult<>(data, msg);
     }
 
+    public static ApiResult<?> fail(String message) {
+        return new ApiResult<>(message);
+    }
+
     @Getter
     public static class ApiResult<T> {
         T data;
@@ -14,6 +18,10 @@ public class ResponseData {
 
         public ApiResult(T data, String msg) {
             this.data = data;
+            this.msg = msg;
+        }
+
+        public ApiResult(String msg) {
             this.msg = msg;
         }
     }

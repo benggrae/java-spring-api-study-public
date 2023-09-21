@@ -15,10 +15,16 @@ public class MenuRestController {
 
     private final MenuService service;
 
-    @PostMapping(value = "")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseData.ApiResult<?> saveMenuApi(@RequestBody MenuDto dto) {
-        return ResponseData.success(service.saveMenu(dto), "저장 성공");
+        return ResponseData.success(service.saveMenu(dto).of(), "저장 성공");
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseData.ApiResult<?> getMenuByIdApi(@PathVariable Long id) {
+        return ResponseData.success(service.findById(id).of(), "호출 성공");
     }
 
 }

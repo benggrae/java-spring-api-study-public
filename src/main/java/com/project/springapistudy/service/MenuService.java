@@ -3,6 +3,7 @@ package com.project.springapistudy.service;
 import com.project.springapistudy.domain.menu.Menu;
 import com.project.springapistudy.domain.menu.MenuRepository;
 import com.project.springapistudy.web.dto.MenuDto;
+import com.project.springapistudy.web.exception.IdNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,4 +21,9 @@ public class MenuService {
                 .build());
     }
 
+    @Transactional(readOnly = true)
+    public Menu findById(Long id) {
+        return menuRepository.findById(id)
+                .orElseThrow(() -> new IdNotFoundException(id + "번 음료를 찾을 수 없습니다."));
+    }
 }

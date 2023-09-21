@@ -22,4 +22,8 @@ public class Menu {
     @Getter
     @Column(unique = true)
     private String menuName;
+
+    public MenuDto of() {
+        return new MenuDto(id, menuName);
+    }
 }
