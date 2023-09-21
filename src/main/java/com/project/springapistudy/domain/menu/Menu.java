@@ -26,4 +26,10 @@ public class Menu {
     public MenuDto of() {
         return new MenuDto(id, menuName);
     }
+
+    public Menu updateBasicInfo(String menuName) {
+        this.menuName = menuName;
+
+        return this;
+    }
 }

@@ -26,4 +26,9 @@ public class MenuRestController {
         return ResponseData.success(service.findById(id).of(), "호출 성공");
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseData.ApiResult<?> updateMenuByIdApi(@PathVariable Long id, @RequestBody MenuDto dto) {
+        return ResponseData.success(service.updateMenu(id, dto), "수정 성공");
+    }
 }

@@ -31,4 +31,10 @@ public class MenuService {
         return menuRepository.findById(id)
                 .orElseThrow(() -> new IdNotFoundException(id + "번 음료를 찾을 수 없습니다."));
     }
+
+    @Transactional
+    public Menu updateMenu(Long id, MenuDto dto) {
+        Menu currentMenu = findById(id);
+        return menuRepository.save(currentMenu.updateBasicInfo(dto.menuName()));
+    }
 }
