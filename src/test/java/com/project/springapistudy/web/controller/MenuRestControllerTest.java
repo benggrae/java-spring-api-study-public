@@ -34,8 +34,8 @@ class MenuRestControllerTest {
     }
 
     @Test
-    @DisplayName("메뉴 저장 테스트")
-    void saveMenuTest() throws Exception{
+    @DisplayName("메뉴 저장 API 테스트")
+    void saveMenuApiTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/menu")
                 .content(mapper.writeValueAsBytes(makeDto()))
