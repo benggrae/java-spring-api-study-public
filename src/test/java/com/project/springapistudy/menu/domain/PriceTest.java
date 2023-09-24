@@ -70,6 +70,7 @@ class PriceTest {
     void isEqual(Price source, Price target) {
         assertSoftly((it) -> {
             it.assertThat(source.isEqualThen(target)).isTrue();
+            it.assertThat(source.equals(target)).isTrue();
         });
     }
 

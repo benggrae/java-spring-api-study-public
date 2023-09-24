@@ -1,6 +1,7 @@
 package com.project.springapistudy.menu.domain;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 
 public class Price {
@@ -11,6 +12,7 @@ public class Price {
         if (isLimitPriceIsLessThen(value)) {
             throw new IllegalArgumentException("가격은 0 보다 작을 수 없습니다.");
         }
+
         this.value = value;
     }
 
@@ -45,6 +47,7 @@ public class Price {
     public boolean isLessThen(Price price) {
         return getValue().compareTo(price.getValue()) == -1;
     }
+
     public boolean isBigThen(Price price) {
         return getValue().compareTo(price.getValue()) == 1;
     }
@@ -53,4 +56,20 @@ public class Price {
         return getValue().compareTo(price.getValue()) == 0;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Price price)) {
+            return false;
+        }
+
+        return this.isEqualThen(price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }
