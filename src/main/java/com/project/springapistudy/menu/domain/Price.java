@@ -2,11 +2,17 @@ package com.project.springapistudy.menu.domain;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 
+@Embeddable
 public class Price {
     private static final BigDecimal LIMIT_PRICE = new BigDecimal("0");
-    private final BigDecimal value;
+
+    private BigDecimal value;
+
+    protected Price() {};
 
     private Price(BigDecimal value) {
         if (isLimitPriceIsLessThen(value)) {
