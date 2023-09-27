@@ -112,3 +112,10 @@ public record MenuDto(
 ```
 
 확실히 `record`를 사용하는 것보단 `class`를 이용해서 유효성 검증을 하는게 더 깔끔할 것 같다..!
+
+### Exception
+
+현재 내 코드에서 `IdNotFoundException`, `DuplicationMenuException`이 동일한 구조를 띄고있다.
+`CustomException`을 만들어서 좋은 것은 메시지를 구체화할 수 있는 것인데, 내부가 중복되는 불상사가 생긴다.
+
+이를 해결할 방법을 생각해보고 적용해봐야겠다!
