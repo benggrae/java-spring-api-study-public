@@ -1,6 +1,6 @@
-package com.project.springapistudy.domain.menu;
+package com.project.springapistudy.menu.domain;
 
-import com.project.springapistudy.web.object.menu.MenuDto;
+import com.project.springapistudy.menu.object.MenuDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

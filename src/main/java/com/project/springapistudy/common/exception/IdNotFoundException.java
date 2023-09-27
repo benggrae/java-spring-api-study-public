@@ -1,4 +1,4 @@
-package com.project.springapistudy.web.exception;
+package com.project.springapistudy.common.exception;
 
 public class IdNotFoundException extends RuntimeException {
     public IdNotFoundException(String message) {

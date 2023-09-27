@@ -1,4 +1,4 @@
-package com.project.springapistudy.util;
+package com.project.springapistudy.common.util;
 
 import lombok.Getter;
 

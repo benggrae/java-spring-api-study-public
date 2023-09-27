@@ -1,8 +1,9 @@
-package com.project.springapistudy.service;
+package com.project.springapistudy.menu.service;
 
-import com.project.springapistudy.domain.menu.Menu;
-import com.project.springapistudy.domain.menu.MenuRepository;
-import com.project.springapistudy.web.object.menu.MenuDto;
+import com.project.springapistudy.menu.domain.Menu;
+import com.project.springapistudy.menu.domain.MenuRepository;
+import com.project.springapistudy.menu.service.MenuService;
+import com.project.springapistudy.menu.object.MenuDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

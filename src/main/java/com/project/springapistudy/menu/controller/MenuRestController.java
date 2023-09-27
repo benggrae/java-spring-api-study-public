@@ -1,8 +1,8 @@
-package com.project.springapistudy.web.controller;
+package com.project.springapistudy.menu.controller;
 
-import com.project.springapistudy.service.MenuService;
-import com.project.springapistudy.util.ResponseData;
-import com.project.springapistudy.web.object.menu.MenuDto;
+import com.project.springapistudy.menu.service.MenuService;
+import com.project.springapistudy.common.util.ResponseData;
+import com.project.springapistudy.menu.object.MenuDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

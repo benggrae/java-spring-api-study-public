@@ -1,4 +1,4 @@
-package com.project.springapistudy.web.object.menu;
+package com.project.springapistudy.menu.object;
 
 import lombok.*;
 

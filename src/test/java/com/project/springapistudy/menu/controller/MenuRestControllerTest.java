@@ -1,4 +1,4 @@
-package com.project.springapistudy.web.menu.controller;
+package com.project.springapistudy.menu.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

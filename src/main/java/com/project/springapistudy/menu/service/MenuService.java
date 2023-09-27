@@ -1,10 +1,10 @@
-package com.project.springapistudy.service;
+package com.project.springapistudy.menu.service;
 
-import com.project.springapistudy.domain.menu.Menu;
-import com.project.springapistudy.domain.menu.MenuRepository;
-import com.project.springapistudy.web.object.menu.MenuDto;
-import com.project.springapistudy.web.exception.DuplicationMenuException;
-import com.project.springapistudy.web.exception.IdNotFoundException;
+import com.project.springapistudy.menu.domain.Menu;
+import com.project.springapistudy.menu.domain.MenuRepository;
+import com.project.springapistudy.menu.object.MenuDto;
+import com.project.springapistudy.common.exception.DuplicationMenuException;
+import com.project.springapistudy.common.exception.IdNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

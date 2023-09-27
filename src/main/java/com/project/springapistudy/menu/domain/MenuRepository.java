@@ -1,4 +1,4 @@
-package com.project.springapistudy.domain.menu;
+package com.project.springapistudy.menu.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
