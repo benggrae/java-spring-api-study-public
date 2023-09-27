@@ -1,6 +1,7 @@
 package com.project.springapistudy.menu.domain;
 
 import com.project.springapistudy.menu.object.MenuDto;
+import com.project.springapistudy.menu.object.MenuVo;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,26 +14,23 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
+@Getter
 public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     @Column(unique = true)
     private String menuName;
 
-    public MenuDto of() {
-        return MenuDto.builder()
-                .id(id)
-                .menuName(menuName)
-                .build();
+    private String useYN;
+
+    public void updateBasicInfo(String menuName) {
+        this.menuName = menuName;
     }
 
-    public Menu updateBasicInfo(String menuName) {
-        this.menuName = menuName;
-
-        return this;
+    public void remove() {
+        this.useYN = "N";
     }
 }

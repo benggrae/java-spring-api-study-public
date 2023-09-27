@@ -9,15 +9,16 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class MenuDto {
+public class MenuVo {
 
-    @NotBlank(message = MenuMessage.MENU_NAME_IS_NOT_NULL)
+    private Long id;
+
     private String menuName;
 
-    public Menu toEntity() {
-        return Menu.builder()
-                .menuName(menuName)
-                .useYN("Y")
+    public static MenuVo fromEntity(Menu menu) {
+        return MenuVo.builder()
+                .id(menu.getId())
+                .menuName(menu.getMenuName())
                 .build();
     }
 
