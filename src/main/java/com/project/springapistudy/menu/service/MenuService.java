@@ -20,18 +20,22 @@ public class MenuService {
 
     @Transactional
     public MenuVo saveMenu(MenuDto dto) {
-        menuRepository.findByMenuName(dto.getMenuName())
-                .ifPresent(menu -> {
-                    throw new DuplicationMenuException(menu.getMenuName() + " 메뉴는 이미 등록되어 있습니다.");
-                });
+
+        if (existsByMenuName(dto.getMenuName())) {
+            throw new DuplicationMenuException();
+        }
+
         return MenuVo.fromEntity(menuRepository.save(dto.toEntity()));
     }
 
     @Transactional(readOnly = true)
+    public boolean existsByMenuName(String menuName) {
+        return menuRepository.existsByMenuName(menuName);
+    }
+
+    @Transactional(readOnly = true)
     public MenuVo findById(Long id) {
-        Menu menu = menuRepository.findById(id)
-                .orElseThrow(() -> new IdNotFoundException(id + "번 음료를 찾을 수 없습니다."));
-        return MenuVo.fromEntity(menu);
+        return MenuVo.fromEntity(findEntityById(id));
     }
 
     public List<MenuVo> findAll() {
@@ -44,7 +48,7 @@ public class MenuService {
     @Transactional(readOnly = true)
     public Menu findEntityById(Long id) {
         return menuRepository.findById(id)
-                .orElseThrow(() -> new IdNotFoundException(id + "번 음료를 찾을 수 없습니다."));
+                .orElseThrow(IdNotFoundException::new);
     }
 
     @Transactional
