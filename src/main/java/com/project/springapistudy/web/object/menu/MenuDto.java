@@ -1,6 +1,8 @@
-package com.project.springapistudy.web.dto;
+package com.project.springapistudy.web.object.menu;
 
 import lombok.*;
+
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Builder
@@ -9,6 +11,8 @@ import lombok.*;
 public class MenuDto {
 
     private Long id;
+
+    @NotBlank(message = MenuMessage.MENU_NAME_IS_NOT_NULL)
     private String menuName;
 
 }

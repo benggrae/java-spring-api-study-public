@@ -1,6 +1,8 @@
-package com.project.springapistudy.web.exception;
+package com.project.springapistudy.web.exception.handler;
 
 import com.project.springapistudy.util.ResponseData;
+import com.project.springapistudy.web.exception.DuplicationMenuException;
+import com.project.springapistudy.web.exception.IdNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
