@@ -24,7 +24,10 @@ public class Menu {
     private String menuName;
 
     public MenuDto of() {
-        return new MenuDto(id, menuName);
+        return MenuDto.builder()
+                .id(id)
+                .menuName(menuName)
+                .build();
     }
 
     public Menu updateBasicInfo(String menuName) {

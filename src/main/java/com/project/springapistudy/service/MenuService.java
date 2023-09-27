@@ -17,12 +17,12 @@ public class MenuService {
 
     @Transactional
     public Menu saveMenu(MenuDto dto) {
-        menuRepository.findByMenuName(dto.menuName())
+        menuRepository.findByMenuName(dto.getMenuName())
                 .ifPresent(menu -> {
                     throw new DuplicationMenuException(menu.getMenuName() + " 메뉴는 이미 등록되어 있습니다.");
                 });
         return menuRepository.save(Menu.builder()
-                .menuName(dto.menuName())
+                .menuName(dto.getMenuName())
                 .build());
     }
 
@@ -35,7 +35,7 @@ public class MenuService {
     @Transactional
     public Menu updateMenu(Long id, MenuDto dto) {
         Menu currentMenu = findById(id);
-        return menuRepository.save(currentMenu.updateBasicInfo(dto.menuName()));
+        return menuRepository.save(currentMenu.updateBasicInfo(dto.getMenuName()));
     }
 
     @Transactional
