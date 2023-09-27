@@ -14,11 +14,13 @@ public class MenuVo {
     private Long id;
 
     private String menuName;
+    private String useYN;
 
     public static MenuVo fromEntity(Menu menu) {
         return MenuVo.builder()
                 .id(menu.getId())
                 .menuName(menu.getMenuName())
+                .useYN(menu.getUseYN())
                 .build();
     }
 

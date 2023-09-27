@@ -17,15 +17,15 @@ import java.util.List;
 public class ExceptionRestHandler {
 
     @ExceptionHandler(IdNotFoundException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseData.ApiResult<?> idNotFoundException(IdNotFoundException e, HttpServletRequest request) {
-        return handleException(e, request, HttpStatus.BAD_REQUEST);
+        return handleException(e, request, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(DuplicationMenuException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseData.ApiResult<?> idNotFoundException(DuplicationMenuException e, HttpServletRequest request) {
-        return handleException(e, request, HttpStatus.NOT_FOUND);
+        return handleException(e, request, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
