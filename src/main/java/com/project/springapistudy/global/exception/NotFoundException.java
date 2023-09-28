@@ -1,10 +1,11 @@
 package com.project.springapistudy.global.exception;
 
-
 import com.project.springapistudy.global.domain.ErrorCode;
+import lombok.Getter;
 
-public class DuplicationException extends BaseException {
-    public DuplicationException(ErrorCode errorCode) {
+@Getter
+public class NotFoundException extends BaseException {
+    public NotFoundException(ErrorCode errorCode) {
         super(errorCode);
     }
 }

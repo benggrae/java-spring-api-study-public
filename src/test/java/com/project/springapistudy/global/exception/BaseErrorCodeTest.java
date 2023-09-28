@@ -11,7 +11,7 @@ class BaseErrorCodeTest {
     @Test
     void getFullErrorMessage() {
         //given
-        enum ErrorCode implements com.project.springapistudy.global.exception.ErrorCode {
+        enum ErrorCode implements com.project.springapistudy.global.domain.ErrorCode {
             ERROR("400", "에러입니당");
             private String code;
             private String message;

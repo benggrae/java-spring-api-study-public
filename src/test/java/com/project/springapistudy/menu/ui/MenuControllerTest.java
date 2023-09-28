@@ -68,12 +68,14 @@ class MenuControllerTest {
         @Test
         @DisplayName("메뉴가 등록된다.")
         void registerMenu() throws Exception {
+            //given
             final String requestBody = TestHelper.DTO를_JSON_문자열로_변환(MenuCreateRequest.builder()
                     .name("메뉴")
                     .category(MenuCategory.NONE.name())
                     .price(BigDecimal.TEN));
 
-            mockMvc.perform(post("/menu")
+            // when & then
+            final MvcResult result = mockMvc.perform(post("/menu")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(requestBody))
                     .andDo(print())

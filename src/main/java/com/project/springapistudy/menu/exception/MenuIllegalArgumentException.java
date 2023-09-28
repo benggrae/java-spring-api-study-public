@@ -1,14 +1,10 @@
 package com.project.springapistudy.menu.exception;
 
-import com.project.springapistudy.global.exception.ErrorCode;
-import lombok.Getter;
+import com.project.springapistudy.global.exception.BaseException;
+import com.project.springapistudy.global.domain.ErrorCode;
 
-public class MenuIllegalArgumentException extends IllegalArgumentException {
-    @Getter
-    private final ErrorCode errorCode;
-
+public class MenuIllegalArgumentException extends BaseException {
     public MenuIllegalArgumentException(ErrorCode errorCode) {
-        super(errorCode.getErrorMessage());
-        this.errorCode = errorCode;
+        super(errorCode);
     }
 }

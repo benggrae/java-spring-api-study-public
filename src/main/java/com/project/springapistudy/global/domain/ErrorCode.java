@@ -1,4 +1,4 @@
-package com.project.springapistudy.global.exception;
+package com.project.springapistudy.global.domain;
 
 public interface ErrorCode {
     default String getErrorMessage() {
