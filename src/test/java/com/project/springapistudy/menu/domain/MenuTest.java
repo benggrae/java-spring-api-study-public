@@ -22,8 +22,9 @@ class MenuTest {
 
     @ParameterizedTest
     @NullAndEmptySource
+    @ValueSource(strings = {" ", "  "})
     @DisplayName("메뉴의 이름은 공백이면 안된다.")
-    void menuNameIsNotEmpty(String menuName) {
+    void menuNameIsNotBlank(String menuName) {
         assertThatThrownBy(() ->
                 Menu.builder()
                     .name(menuName)

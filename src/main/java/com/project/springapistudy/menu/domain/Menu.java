@@ -45,7 +45,7 @@ public class Menu {
     }
 
     private void validateMenuName(String name) {
-        if (ObjectUtils.isEmpty(name)) {
+        if (name == null || name.isBlank()) {
             throw new MenuIllegalArgumentException(MenuErrorCode.MENU_IS_NOT_EMPTY_NAME);
         }
     }

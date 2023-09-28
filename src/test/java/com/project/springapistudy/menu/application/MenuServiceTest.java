@@ -1,15 +1,20 @@
 package com.project.springapistudy.menu.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 import com.project.springapistudy.global.exception.DuplicationException;
-import com.project.springapistudy.menu.dto.MenuCreateRequest;
+import com.project.springapistudy.global.exception.NotFoundException;
 import com.project.springapistudy.menu.domain.Menu;
 import com.project.springapistudy.menu.domain.MenuCategory;
 import com.project.springapistudy.menu.domain.MenuRepository;
+import com.project.springapistudy.menu.domain.Price;
+import com.project.springapistudy.menu.dto.MenuCreateRequest;
+import com.project.springapistudy.menu.dto.MenuSearchResponse;
 import java.math.BigDecimal;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -76,6 +81,43 @@ class MenuServiceTest {
             //when & then
             assertThrows(DuplicationException.class, () -> {
                 menuService.registerMenu(request);
+            });
+        }
+    }
+
+    @DisplayName("메뉴 조회")
+    @Nested
+    class MenuSearch {
+        @DisplayName("없는 메뉴를 조회한다.")
+        @Test
+        void noExistMenu() {
+            given(menuRepository.findById(0L)).willReturn(Optional.empty());
+
+            assertThatThrownBy(() -> {
+                menuService.searchMenu(0L);
+            }).isInstanceOf(NotFoundException.class);
+        }
+
+        @DisplayName("메뉴를 조회한다")
+        @Test
+        void search() {
+            //given
+            Menu menu = Menu.builder().name("메뉴")
+                            .category(MenuCategory.BEVERAGE)
+                            .price(Price.valueOf(10))
+                            .build();
+
+            given(menuRepository.findById(1L)).willReturn(Optional.of(menu));
+            ReflectionTestUtils.setField(menu, "id", 1L);
+
+            //when
+            MenuSearchResponse response = menuService.searchMenu(1L);
+
+            //then
+            assertSoftly((it) -> {
+                it.assertThat(response.name()).isEqualTo("메뉴");
+                it.assertThat(response.category()).isEqualTo("BEVERAGE");
+                it.assertThat(response.price()).isEqualTo(BigDecimal.TEN);
             });
         }
     }

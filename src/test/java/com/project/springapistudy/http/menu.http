@@ -1,4 +1,4 @@
-# 메뉴를 생성한다.
+### 메뉴를 생성한다.
 POST http://localhost:8080/menu
 Content-Type: application/json
 
@@ -7,3 +7,7 @@ Content-Type: application/json
   "price" : "2000",
   "category": "BEVERAGE"
 }
+
+### 메뉴를 조회한다.
+GET http://localhost:8080/menu/{{id}}}
+
