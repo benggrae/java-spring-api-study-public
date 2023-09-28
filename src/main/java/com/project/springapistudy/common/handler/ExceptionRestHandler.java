@@ -1,5 +1,6 @@
 package com.project.springapistudy.common.handler;
 
+import com.project.springapistudy.common.exception.BaseException;
 import com.project.springapistudy.common.exception.DuplicationMenuException;
 import com.project.springapistudy.common.exception.IdNotFoundException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -16,16 +17,10 @@ import java.util.List;
 @RestControllerAdvice
 public class ExceptionRestHandler {
 
-    @ExceptionHandler(IdNotFoundException.class)
+    @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseData.ApiResult<?> idNotFoundException(IdNotFoundException e, HttpServletRequest request) {
+    public ResponseData.ApiResult<?> runtimeBaseException(IdNotFoundException e, HttpServletRequest request) {
         return handleException(e, request, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(DuplicationMenuException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseData.ApiResult<?> idNotFoundException(DuplicationMenuException e, HttpServletRequest request) {
-        return handleException(e, request, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
