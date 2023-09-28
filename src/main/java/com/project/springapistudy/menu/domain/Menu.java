@@ -1,7 +1,6 @@
 package com.project.springapistudy.menu.domain;
 
-import static com.project.springapistudy.core.VerifyUtils.verifyEmptySource;
-
+import com.project.springapistudy.menu.exception.MenuIllegalArgumentException;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -13,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.util.ObjectUtils;
 
 
 @Getter
@@ -36,11 +36,17 @@ public class Menu {
 
     @Builder
     private Menu(String name, MenuCategory category, Price price) {
-        verifyEmptySource(name, "메뉴의 이름은 비어 있으면 안됩니다.");
+        validateMenuName(name);
         MenuCategory.validate(category);
 
         this.name = name;
         this.price = price;
         this.category = category;
+    }
+
+    private void validateMenuName(String name) {
+        if (ObjectUtils.isEmpty(name)) {
+            throw new MenuIllegalArgumentException(MenuErrorCode.MENU_IS_NOT_EMPTY_NAME);
+        }
     }
 }

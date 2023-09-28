@@ -1,5 +1,7 @@
 package com.project.springapistudy.menu.domain;
 
+import com.project.springapistudy.menu.exception.MenuIllegalArgumentException;
+
 public enum MenuCategory {
     COFFEE,
     BEVERAGE,
@@ -8,7 +10,7 @@ public enum MenuCategory {
 
     public static void validate(MenuCategory category) {
         if (category == null){
-            throw new IllegalArgumentException("카테고리는 비어 있으면 안됩니다.");
+            throw new MenuIllegalArgumentException(MenuErrorCode.MENU_IS_NOT_EMPTY_CATEGORY_NAME);
         }
     }
 }

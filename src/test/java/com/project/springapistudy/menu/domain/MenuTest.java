@@ -1,8 +1,9 @@
 package com.project.springapistudy.menu.domain;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
+import com.project.springapistudy.menu.exception.MenuIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,21 +24,23 @@ class MenuTest {
     @NullAndEmptySource
     @DisplayName("메뉴의 이름은 공백이면 안된다.")
     void menuNameIsNotEmpty(String menuName) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> Menu.builder()
-                        .name(menuName)
-                        .category(MenuCategory.BEVERAGE)
-                        .build());
+        assertThatThrownBy(() ->
+                Menu.builder()
+                    .name(menuName)
+                    .category(MenuCategory.BEVERAGE)
+                    .build())
+        .isInstanceOf(MenuIllegalArgumentException.class);
 
     }
 
     @Test
     @DisplayName("메뉴는 카테고리를 가진다.")
     void menuHasCategory() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> Menu.builder()
+        assertThatThrownBy(() ->
+                Menu.builder()
                         .name("아메리카노")
-                        .build());
+                        .build())
+                .isInstanceOf(MenuIllegalArgumentException.class);
     }
 
     @Test
