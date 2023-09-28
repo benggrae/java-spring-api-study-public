@@ -2,6 +2,7 @@ package com.project.springapistudy.menu.application;
 
 import com.project.springapistudy.global.exception.DuplicationException;
 import com.project.springapistudy.menu.domain.Menu;
+import com.project.springapistudy.menu.domain.MenuCategory;
 import com.project.springapistudy.menu.domain.MenuErrorCode;
 import com.project.springapistudy.menu.domain.MenuRepository;
 import com.project.springapistudy.menu.domain.Price;
@@ -22,7 +23,7 @@ public class MenuService {
         final Menu menu = Menu.builder()
                 .name(request.name())
                 .price(Price.valueOf(request.price()))
-                .category(request.category())
+                .category(MenuCategory.of(request.category()))
                 .build();
 
         return menuRepository.save(menu).getId();

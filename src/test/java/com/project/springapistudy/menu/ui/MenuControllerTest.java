@@ -39,7 +39,7 @@ class MenuControllerTest {
         void priceIsNotPositive(double value) throws Exception {
             final String requestBody = TestHelper.DTO를_JSON_문자열로_변환(MenuCreateRequest.builder()
                     .name("메뉴")
-                    .category(MenuCategory.NONE)
+                    .category(MenuCategory.NONE.name())
                     .price(BigDecimal.valueOf(value)));
 
             mockMvc.perform(post("/menu")
@@ -54,7 +54,7 @@ class MenuControllerTest {
         void priceIsZero() throws Exception {
             final String requestBody = TestHelper.DTO를_JSON_문자열로_변환(MenuCreateRequest.builder()
                     .name("가격이0원인메뉴")
-                    .category(MenuCategory.NONE)
+                    .category(MenuCategory.NONE.name())
                     .price(BigDecimal.ZERO));
 
             mockMvc.perform(post("/menu")
@@ -70,7 +70,7 @@ class MenuControllerTest {
         void registerMenu() throws Exception {
             final String requestBody = TestHelper.DTO를_JSON_문자열로_변환(MenuCreateRequest.builder()
                     .name("메뉴")
-                    .category(MenuCategory.NONE)
+                    .category(MenuCategory.NONE.name())
                     .price(BigDecimal.TEN));
 
             mockMvc.perform(post("/menu")

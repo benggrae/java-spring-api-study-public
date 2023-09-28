@@ -37,7 +37,7 @@ public class Menu {
     @Builder
     private Menu(String name, MenuCategory category, Price price) {
         validateMenuName(name);
-        MenuCategory.validate(category);
+        validateMenuCategory(category);
 
         this.name = name;
         this.price = price;
@@ -47,6 +47,12 @@ public class Menu {
     private void validateMenuName(String name) {
         if (ObjectUtils.isEmpty(name)) {
             throw new MenuIllegalArgumentException(MenuErrorCode.MENU_IS_NOT_EMPTY_NAME);
+        }
+    }
+
+    private void validateMenuCategory(MenuCategory menuCategory) {
+        if (ObjectUtils.isEmpty(menuCategory)) {
+            throw new MenuIllegalArgumentException(MenuErrorCode.MENU_IS_NOT_EMPTY_CATEGORY_NAME);
         }
     }
 }

@@ -34,7 +34,7 @@ class MenuTest {
     }
 
     @Test
-    @DisplayName("메뉴는 카테고리를 가진다.")
+    @DisplayName("메뉴는 카테고리 가진다.")
     void menuHasCategory() {
         assertThatThrownBy(() ->
                 Menu.builder()

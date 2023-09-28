@@ -40,7 +40,7 @@ class MenuServiceTest {
             //given
             MenuCreateRequest request = MenuCreateRequest.builder()
                             .name("메뉴")
-                            .category(MenuCategory.NONE)
+                            .category(MenuCategory.NONE.name())
                             .price(BigDecimal.TEN)
                             .build();
 
@@ -62,7 +62,7 @@ class MenuServiceTest {
             //given
             MenuCreateRequest request =  MenuCreateRequest.builder()
                     .name("메뉴")
-                    .category(MenuCategory.NONE)
+                    .category(MenuCategory.NONE.name())
                     .price(BigDecimal.TEN)
                     .build();
 
