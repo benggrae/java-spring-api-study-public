@@ -24,6 +24,7 @@ repositories {
 
 ext {
     h2Version = '2.2.224'
+    problemSpringWebVersion = '0.27.0'
 }
 
 
@@ -31,6 +32,9 @@ dependencies {
     //spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    //implementation "org.zalando:problem-spring-web-starter:${problemSpringWebVersion}"
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -42,6 +46,8 @@ dependencies {
     //test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "com.h2database:h2:${h2Version}"
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {

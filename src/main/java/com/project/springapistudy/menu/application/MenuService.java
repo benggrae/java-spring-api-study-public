@@ -1,10 +1,11 @@
 package com.project.springapistudy.menu.application;
 
-import com.project.springapistudy.core.exceptions.DuplicationException;
-import com.project.springapistudy.menu.ui.dto.MenuCreateRequest;
+import com.project.springapistudy.global.exception.DuplicationException;
 import com.project.springapistudy.menu.domain.Menu;
+import com.project.springapistudy.menu.domain.MenuErrorCode;
 import com.project.springapistudy.menu.domain.MenuRepository;
 import com.project.springapistudy.menu.domain.Price;
+import com.project.springapistudy.menu.dto.MenuCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class MenuService {
 
     public Long registerMenu(MenuCreateRequest request) {
         if (menuRepository.findByName(request.name()).isPresent()) {
-            throw new DuplicationException("중복된 메뉴가 있습니다");
+            throw new DuplicationException(MenuErrorCode.MENU_IS_NOT_EMPTY_NAME);
         }
 
         final Menu menu = Menu.builder()

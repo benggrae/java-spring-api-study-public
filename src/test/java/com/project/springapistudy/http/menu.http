@@ -1,0 +1,9 @@
+# 메뉴를 생성한다.
+POST http://localhost:8080/menu
+Content-Type: application/json
+
+{
+  "name": "메뉴",
+  "price" : "2000",
+  "category": "BEVERAGE"
+}

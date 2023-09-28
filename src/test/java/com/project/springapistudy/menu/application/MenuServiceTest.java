@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import com.project.springapistudy.core.exceptions.DuplicationException;
-import com.project.springapistudy.menu.ui.dto.MenuCreateRequest;
+import com.project.springapistudy.global.exception.DuplicationException;
+import com.project.springapistudy.menu.dto.MenuCreateRequest;
 import com.project.springapistudy.menu.domain.Menu;
 import com.project.springapistudy.menu.domain.MenuCategory;
 import com.project.springapistudy.menu.domain.MenuRepository;
@@ -29,7 +29,7 @@ class MenuServiceTest {
     private MenuService menuService;
 
     @Mock
-    private MenuRepository mockRepository;
+    private MenuRepository menuRepository;
 
     @Nested
     @DisplayName("메뉴 등록")
@@ -38,12 +38,17 @@ class MenuServiceTest {
         @DisplayName("메뉴가 등록된다.")
         void menuRegister() {
             //given
-            MenuCreateRequest request = new MenuCreateRequest("메뉴", MenuCategory.NONE, BigDecimal.TEN);
+            MenuCreateRequest request = MenuCreateRequest.builder()
+                            .name("메뉴")
+                            .category(MenuCategory.NONE)
+                            .price(BigDecimal.TEN)
+                            .build();
+
             Menu createMenu = Menu.builder().category(MenuCategory.NONE).name(request.name()).build();
             ReflectionTestUtils.setField(createMenu, "id", 1L);
 
-            given(mockRepository.findByName(request.name())).willReturn(Optional.empty());
-            given(mockRepository.save(any())).willReturn(createMenu);
+            given(menuRepository.findByName(request.name())).willReturn(Optional.empty());
+            given(menuRepository.save(any())).willReturn(createMenu);
 
             //when
             Long menuId = menuService.registerMenu(request);
@@ -55,13 +60,18 @@ class MenuServiceTest {
         @DisplayName("이미 등록된 메뉴가 있으면 예외가 발생한다.")
         void existMenu() {
             //given
-            MenuCreateRequest request = new MenuCreateRequest("메뉴", MenuCategory.NONE, BigDecimal.TEN);
+            MenuCreateRequest request =  MenuCreateRequest.builder()
+                    .name("메뉴")
+                    .category(MenuCategory.NONE)
+                    .price(BigDecimal.TEN)
+                    .build();
+
             Menu 등록된_메뉴 = Menu.builder()
                     .category(MenuCategory.NONE)
                     .name(request.name())
                     .build();
 
-            given(mockRepository.findByName(request.name())).willReturn(Optional.of(등록된_메뉴));
+            given(menuRepository.findByName(request.name())).willReturn(Optional.of(등록된_메뉴));
 
             //when & then
             assertThrows(DuplicationException.class, () -> {
