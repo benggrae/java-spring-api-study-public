@@ -1,5 +1,6 @@
 package com.project.springapistudy.menu.domain;
 
+import com.project.springapistudy.global.domain.BaseTimeEntity;
 import com.project.springapistudy.menu.exception.MenuIllegalArgumentException;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -20,7 +21,7 @@ import org.springframework.util.ObjectUtils;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Menu {
+public class Menu extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
