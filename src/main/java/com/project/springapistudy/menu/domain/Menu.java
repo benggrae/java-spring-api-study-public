@@ -10,13 +10,16 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
 
 
 @Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu {
 
     @Id
@@ -32,7 +35,6 @@ public class Menu {
 
     @Enumerated(EnumType.STRING)
     private MenuCategory category;
-    protected Menu() {}
 
     @Builder
     private Menu(String name, MenuCategory category, Price price) {
@@ -43,6 +45,20 @@ public class Menu {
         this.price = price;
         this.category = category;
     }
+
+    public void changeMenuName(String name) {
+        validateMenuName(name);
+        this.name = name;
+    }
+
+    public void changeMenuCategory(MenuCategory category) {
+        this.category = category;
+    }
+
+    public void changePrice(Price price) {
+        this.price = price;
+    }
+
 
     private void validateMenuName(String name) {
         if (name == null || name.isBlank()) {

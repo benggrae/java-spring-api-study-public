@@ -1,13 +1,16 @@
 package com.project.springapistudy.menu.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import com.project.springapistudy.menu.exception.MenuIllegalArgumentException;
+import com.project.springapistudy.menu.fixture.MenuFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
 /**
@@ -66,5 +69,50 @@ class MenuTest {
             it.assertThat(menu.getPrice()).isEqualTo(price);
         });
     }
+
+
+    @ParameterizedTest
+    @DisplayName("메뉴이름이 공백이면 이름이 변경되지 않는다.")
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "  "})
+    void changeNotMenu(String menuName) {
+        //given
+        Menu menu = MenuFixture.createMenu("이름", MenuCategory.BEVERAGE, Price.valueOf(10));
+
+        //when & then
+        assertThatThrownBy(() -> menu.changeMenuName(menuName))
+                .isInstanceOf(MenuIllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("메뉴이름이 변경이 된다.")
+    void changeMenu() {
+        Menu menu = MenuFixture.createMenu("이름", MenuCategory.BEVERAGE, Price.valueOf(10));
+
+        menu.changeMenuName("변경된이름");
+
+        assertThat(menu.getName()).isEqualTo("변경된이름");
+    }
+
+    @Test
+    @DisplayName("메뉴 카테고리가 변경이 된다.")
+    void changeMenuCategory() {
+        Menu menu = MenuFixture.createMenu("이름", MenuCategory.BEVERAGE, Price.valueOf(10));
+
+        menu.changeMenuCategory(MenuCategory.FOOD);
+
+        assertThat(menu.getCategory()).isEqualTo(MenuCategory.FOOD);
+    }
+
+    @Test
+    @DisplayName("메뉴 가격이 변경이 된다.")
+    void changeMenuPrice() {
+        Menu menu = MenuFixture.createMenu("이름", MenuCategory.BEVERAGE, Price.valueOf(10));
+
+        menu.changePrice(Price.valueOf(100));
+
+        assertThat(menu.getPrice()).isEqualTo(Price.valueOf(100));
+    }
+
 
 }

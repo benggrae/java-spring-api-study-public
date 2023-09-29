@@ -7,6 +7,6 @@ public record ErrorResponse(
     String message
 ) {
     public ErrorResponse(ErrorCode errorCode) {
-        this(errorCode.getCode(), errorCode.getMessage());
+        this(errorCode.getCode(), errorCode.getErrorMessage());
     }
 }

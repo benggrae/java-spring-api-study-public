@@ -7,7 +7,7 @@ import lombok.Getter;
 public abstract class BaseException extends RuntimeException {
     private final ErrorCode errorCode;
     public BaseException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
+        super(errorCode.getErrorMessage());
         this.errorCode = errorCode;
     }
 }

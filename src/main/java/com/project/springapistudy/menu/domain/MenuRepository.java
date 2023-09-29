@@ -9,4 +9,8 @@ public interface MenuRepository {
     Optional<Menu> findByName(String name);
 
     Optional<Menu> findById(Long id);
+
+    boolean existsByNameAndIdNot(String name, Long id);
+
+    void deleteAll();
 }

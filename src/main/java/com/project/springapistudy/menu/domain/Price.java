@@ -3,15 +3,15 @@ package com.project.springapistudy.menu.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.Embeddable;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 
 @Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Price {
     private static final BigDecimal LIMIT_PRICE = BigDecimal.valueOf(0);
-
     private BigDecimal value;
-
-    protected Price() {};
 
     private Price(BigDecimal value) {
         if (isLimitPriceIsLessThen(value)) {

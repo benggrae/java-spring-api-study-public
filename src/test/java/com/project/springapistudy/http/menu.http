@@ -3,7 +3,7 @@ POST http://localhost:8080/menu
 Content-Type: application/json
 
 {
-  "name": "메뉴",
+  "name": "메뉴2",
   "price" : "2000",
   "category": "BEVERAGE"
 }
@@ -11,3 +11,12 @@ Content-Type: application/json
 ### 메뉴를 조회한다.
 GET http://localhost:8080/menu/{{id}}}
 
+### 메뉴를 변경한다.
+PUT http://localhost:8080/menu/{{id}}
+Content-Type: application/json
+
+{
+  "name": "메뉴2",
+  "price" : "2000",
+  "category": "BEVERAGE"
+}
