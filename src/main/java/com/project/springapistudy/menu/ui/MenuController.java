@@ -10,6 +10,7 @@ import com.project.springapistudy.menu.dto.MenuSearchResponse;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +46,14 @@ public class MenuController {
 
         return ResponseEntity.created(
                     fromPath("/menu/{id}").build(changeId))
+                .build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> changeMenu(@PathVariable("id") Long id) {
+        menuService.deleteMenu(id);
+
+        return ResponseEntity.ok()
                 .build();
     }
 }

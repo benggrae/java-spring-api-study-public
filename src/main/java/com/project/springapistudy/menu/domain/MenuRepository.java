@@ -12,5 +12,7 @@ public interface MenuRepository {
 
     boolean existsByNameAndIdNot(String name, Long id);
 
+    void delete(Menu entity);
+
     void deleteAll();
 }

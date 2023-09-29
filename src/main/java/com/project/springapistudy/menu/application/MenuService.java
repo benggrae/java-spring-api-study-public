@@ -60,12 +60,19 @@ public class MenuService {
             menu.changeMenuName(name);
         });
 
-        request.category().ifPresent((category) ->
-                menu.changeMenuCategory(MenuCategory.of(category)));
+        request.category().ifPresent(
+                (category) -> menu.changeMenuCategory(MenuCategory.of(category)));
 
-        request.price().ifPresent((price) ->
-                menu.changePrice(Price.valueOf(price)));
+        request.price().ifPresent(
+                (price) -> menu.changePrice(Price.valueOf(price)));
 
         return id;
+    }
+
+    public void deleteMenu(Long id) {
+        Menu menu = menuRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(MenuErrorCode.MENU_NOT_FOUND));
+
+        menuRepository.delete(menu);
     }
 }

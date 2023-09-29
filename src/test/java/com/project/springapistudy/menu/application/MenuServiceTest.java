@@ -313,4 +313,30 @@ class MenuServiceTest {
         }
     }
 
+    @DisplayName("메뉴 삭제")
+    @Nested
+    class MenuDelete {
+        @Test
+        @DisplayName("메뉴가 존재하지 않으면 삭제하지 못 한다.")
+        void noExistMenu() {
+            given(menuRepository.findById(1L)).willReturn(Optional.empty());
+
+            assertThatThrownBy(
+                    () ->  menuService.deleteMenu(1L))
+            .isInstanceOf(NotFoundException.class);
+        }
+
+        @Test
+        @DisplayName("메뉴를 삭제한다.")
+        void deleteMenu() {
+            Menu menu = mock(Menu.class);
+
+            given(menuRepository.findById(1L)).willReturn(Optional.of(menu));
+
+            menuService.deleteMenu(1L);
+
+            verify(menuRepository).delete(menu);
+        }
+    }
+
 }
