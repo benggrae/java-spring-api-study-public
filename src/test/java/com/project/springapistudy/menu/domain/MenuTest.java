@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
-import com.project.springapistudy.menu.exception.MenuIllegalArgumentException;
+import com.project.springapistudy.menu.exception.MenuValidationException;
 import com.project.springapistudy.menu.fixture.MenuFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,23 +28,21 @@ class MenuTest {
     @ValueSource(strings = {" ", "  "})
     @DisplayName("메뉴의 이름은 공백이면 안된다.")
     void menuNameIsNotBlank(String menuName) {
-        assertThatThrownBy(() ->
-                Menu.builder()
+        assertThatThrownBy(() -> Menu.builder()
                     .name(menuName)
                     .category(MenuCategory.BEVERAGE)
                     .build())
-        .isInstanceOf(MenuIllegalArgumentException.class);
+        .isInstanceOf(MenuValidationException.class);
 
     }
 
     @Test
     @DisplayName("메뉴는 카테고리 가진다.")
     void menuHasCategory() {
-        assertThatThrownBy(() ->
-                Menu.builder()
+        assertThatThrownBy(() -> Menu.builder()
                         .name("아메리카노")
                         .build())
-                .isInstanceOf(MenuIllegalArgumentException.class);
+                .isInstanceOf(MenuValidationException.class);
     }
 
     @Test
@@ -81,7 +79,7 @@ class MenuTest {
 
         //when & then
         assertThatThrownBy(() -> menu.changeMenuName(menuName))
-                .isInstanceOf(MenuIllegalArgumentException.class);
+                .isInstanceOf(MenuValidationException.class);
     }
 
     @Test

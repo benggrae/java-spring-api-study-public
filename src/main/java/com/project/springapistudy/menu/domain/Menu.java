@@ -1,7 +1,7 @@
 package com.project.springapistudy.menu.domain;
 
 import com.project.springapistudy.global.domain.BaseTimeEntity;
-import com.project.springapistudy.menu.exception.MenuIllegalArgumentException;
+import com.project.springapistudy.menu.exception.MenuValidationException;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -63,13 +63,13 @@ public class Menu extends BaseTimeEntity {
 
     private void validateMenuName(String name) {
         if (name == null || name.isBlank()) {
-            throw new MenuIllegalArgumentException(MenuErrorCode.MENU_IS_NOT_EMPTY_NAME);
+            throw new MenuValidationException(MenuErrorCode.MENU_IS_NOT_EMPTY_NAME);
         }
     }
 
     private void validateMenuCategory(MenuCategory menuCategory) {
         if (ObjectUtils.isEmpty(menuCategory)) {
-            throw new MenuIllegalArgumentException(MenuErrorCode.MENU_IS_NOT_EMPTY_CATEGORY_NAME);
+            throw new MenuValidationException(MenuErrorCode.MENU_IS_NOT_EMPTY_CATEGORY_NAME);
         }
     }
 }

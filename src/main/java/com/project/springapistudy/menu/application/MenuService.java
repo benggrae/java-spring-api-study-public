@@ -32,7 +32,6 @@ public class MenuService {
                 .category(MenuCategory.of(request.category()))
                 .build();
 
-
         return menuRepository.save(menu).getId();
     }
 
@@ -60,11 +59,11 @@ public class MenuService {
             menu.changeMenuName(name);
         });
 
-        request.category().ifPresent(
-                (category) -> menu.changeMenuCategory(MenuCategory.of(category)));
+        request.category().ifPresent((category) ->
+                menu.changeMenuCategory(MenuCategory.of(category)));
 
-        request.price().ifPresent(
-                (price) -> menu.changePrice(Price.valueOf(price)));
+        request.price().ifPresent((price) ->
+                menu.changePrice(Price.valueOf(price)));
 
         return id;
     }
